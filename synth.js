@@ -2,6 +2,7 @@ var AudioContext = window.AudioContext ||
   window.webkitAudioContext;
 
 const context = new AudioContext();
+
 const volume = context.createGain();
 volume.connect(context.destination);
 
@@ -15,6 +16,7 @@ function changeVolume() {
     volume.gain.value = this.value;
 }
 
+// note buttons
 const c4_Button = document.querySelector("#C4")
 const cSharp_Button = document.querySelector("#Csharp")
 const d_Button = document.querySelector("#D")
@@ -29,9 +31,8 @@ const aSharp_Button = document.querySelector("#Asharp")
 const b_Button = document.querySelector("#B")
 const c5_Button = document.querySelector("#C5")
 
-const noteButtons = [c4_Button, cSharp_Button, d_Button, dSharp_Button, e_Button, f_Button, fSharp_Button, g_Button, gSharp_Button, a_Button, aSharp_Button, b_Button, c5_Button]
-
 // notes and their associated frequencies
+// I don't ever use the name attribute but just for clarity
 const Notes = [
     { name: "C4", frequency: 261.63 }, // C4
     { name: "C#", frequency: 277.18 }, 
@@ -48,12 +49,32 @@ const Notes = [
     { name: "C5", frequency: 523.25 }, // C5
 ]
 
+// params: frequency val, gain val
+// returns the lfo
+// function tremelo (frequency, gain, wavetype, oscillator, noteGain, tremolo) {
+//     tremolo.gain.value = gain;
+
+//     oscillator.connect(tremolo);
+//     tremolo.connect(noteGain);
+
+//     const lfo = context.createOscillator();
+//     lfo.frequency.value = frequency; // Set the frequency of the LFO to 5 Hz
+//     lfo.type = wavetype;
+
+//     return lfo;
+// }
+
 // synth functionality
-for (let i = 0; i <= noteButtons.length; i++) {
+for (let i = 0; i <= Notes.length; i++) {
     window.addEventListener('keydown', function(event) {
         const key = event.key;
         let index;
+        let noteLength = 5;
       
+        // mapping key letters to notes by associated them with indices
+        // is mapped out to have shape of piano on keyboard
+        // press a key assigns index to a value for rest of the loop
+        // that index corresponds to Notes list to obtain the frequency we want
         switch (key) {
           case 'a':
             index = 0;
@@ -99,22 +120,46 @@ for (let i = 0; i <= noteButtons.length; i++) {
         }
       
         const oscillator = context.createOscillator();
+        
+
         const noteGain = context.createGain();
-        noteGain.gain.value = .1;
+        noteGain.gain.value = .1; // note gain starts low, but is countered with attack envelop
+
+        const tremolo = context.createGain();
+        //const lfo = tremelo(1, .1, 'sine', oscillator, noteGain, myTremolo);
+        
+        tremolo.gain.value = .5;
+
+        oscillator.connect(tremolo);
+        tremolo.connect(noteGain);
         
         oscillator.type = 'triangle';
         oscillator.frequency.setValueAtTime(Notes[index].frequency, context.currentTime); 
-      
+  
+        // tremelo: down and up in volume quickly
+        const lfo = context.createOscillator();
+        lfo.frequency.value = 4; // Set the frequency of the LFO to 5 Hz
+        lfo.type = 'sine';
+
         // gain node envelope: adjust these for attack and decay
-        noteGain.gain.linearRampToValueAtTime(.1, context.currentTime); // attack
-        noteGain.gain.linearRampToValueAtTime(.0001, context.currentTime + 2); // decay
-      
-        // start/stop oscillator: adjust stop time for note length
-        oscillator.start(0);
-        oscillator.stop(context.currentTime + 2);
+        //noteGain.gain.linearRampToValueAtTime(.1, context.currentTime); // attack
+        noteGain.gain.linearRampToValueAtTime(.0001, context.currentTime + noteLength -.1); // decay
+    
+  
+
+        // starting and stoppin
+        // Start the LFO
+        lfo.start(0);
+        lfo.stop(context.currentTime + noteLength);  
+        oscillator.start(0); 
+        oscillator.stop(context.currentTime + noteLength -.001); // start/stop oscillator: adjust stop time for note length
+
       
         // connect nodes
-        oscillator.connect(noteGain);
+        //oscillator.connect(tremolo);
+        // myTremolo.connect(noteGain); 
+        lfo.connect(tremolo.gain); // Connect the LFO to the tremolo gain node
+        oscillator.connect(noteGain);      
         noteGain.connect(volume);
       });
 }
