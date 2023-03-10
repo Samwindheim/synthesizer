@@ -6,7 +6,7 @@ const volume = context.createGain();
 volume.connect(context.destination);
 
 const volumeControl = document.querySelector('#volume-control')
-const release = document.querySelector('#release')
+//const release = document.querySelector('#release')
 volume.gain.value = .1;
 
 volumeControl.addEventListener('input', changeVolume);
@@ -50,25 +50,71 @@ const Notes = [
 
 // synth functionality
 for (let i = 0; i <= noteButtons.length; i++) {
-    noteButtons[i].addEventListener('click', function() {
+    window.addEventListener('keydown', function(event) {
+        const key = event.key;
+        let index;
+      
+        switch (key) {
+          case 'a':
+            index = 0;
+            break;
+          case 'w':
+            index = 1;
+            break;
+          case 's':
+            index = 2;
+            break;
+          case 'e':
+            index = 3;
+            break;
+          case 'd':
+            index = 4;
+            break;
+          case 'f':
+            index = 5;
+            break;
+          case 't':
+            index = 6;
+            break;
+          case 'g':
+            index = 7;
+            break;
+          case 'y':
+            index = 8;
+            break;
+          case 'h':
+            index = 9;
+            break;
+          case 'u':
+            index = 10;
+            break;
+          case 'j':
+            index = 11;
+            break;
+          case 'k':
+            index = 12;
+            break;
+          default:
+            return; // Do nothing if key is not mapped to a note
+        }
+      
         const oscillator = context.createOscillator();
         const noteGain = context.createGain();
-        noteGain.gain.value = .1
-        //noteGain.gain.setValueAtTime(volume.gain.value, context.currentTime)
-        //noteGain.gain.setValueAtTime(volume.gain.value, currentTime + .3);
-        // noteGain.gain.linearRampToValueAtTime(.2, context.currentTime + .3);
+        noteGain.gain.value = .1;
         
         oscillator.type = 'triangle';
-        oscillator.frequency.setValueAtTime(Notes[i].frequency, context.currentTime); 
-
-        noteGain.gain.linearRampToValueAtTime(.1, context.currentTime + 1 ) // attack
-
-        // approaches the gain value at first parameter by second parameter's time
-        noteGain.gain.linearRampToValueAtTime(.0001, context.currentTime + 4 - .9) // decay
-        
+        oscillator.frequency.setValueAtTime(Notes[index].frequency, context.currentTime); 
+      
+        // gain node envelope: adjust these for attack and decay
+        noteGain.gain.linearRampToValueAtTime(.1, context.currentTime); // attack
+        noteGain.gain.linearRampToValueAtTime(.0001, context.currentTime + 2); // decay
+      
+        // start/stop oscillator: adjust stop time for note length
         oscillator.start(0);
-        oscillator.stop(context.currentTime + 4)
+        oscillator.stop(context.currentTime + 2);
+      
+        // connect nodes
         oscillator.connect(noteGain);
         noteGain.connect(volume);
-        });
+      });
 }
