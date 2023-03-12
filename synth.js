@@ -133,7 +133,7 @@ function synth (wavetype, noteLength, attack, decay, tremoloDepth, tremeloFreque
 // noteLength = 5, attack = .1, decay = .1, tremeloDepth = .5, tremeloFrequency = 4
 function main() {
   let wavetype = 'triangle'
-  let noteLength = 2;
+  let noteLength = 10;
   let attack = 0; // shouldn't be greater than note length
   let decay = .1;  // shouldn't be greater than note length
   let tremoloDepth = .1;
