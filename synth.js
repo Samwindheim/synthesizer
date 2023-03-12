@@ -10,24 +10,26 @@ volume.gain.value = .1;
 // notes and their associated frequencies
 // don't use the name attribute but just for clarity
 
-// function frequency(referenceFrequency, distance) {
-//     return referenceFrequency * 2**(distance/12)
-// }
+function frequency(referenceFrequency, distance) {
+    return referenceFrequency * 2**(distance/12)
+}
+
+let C4 = 261.3
 
 const Notes = [
-    { name: "C4", frequency: 261.63 }, // C4
-    { name: "C#", frequency: 277.18 }, 
-    { name: "D", frequency: 293.66 }, 
-    { name: "D#", frequency: 311.13 }, 
-    { name: "E", frequency: 329.63 }, 
-    { name: "F", frequency: 349.23 }, 
-    { name: "F#", frequency: 369.99 },
-    { name: "G", frequency: 392.00 }, 
-    { name: "G#", frequency: 415.30 }, 
-    { name: "A", frequency: 440.00 }, 
-    { name: "A#", frequency: 466.16 }, 
-    { name: "B", frequency: 493.88 }, 
-    { name: "C5", frequency: 523.25 }, // C5
+    { name: "C4", frequency: C4 }, // C4
+    { name: "C#", frequency: frequency(C4, 1) }, 
+    { name: "D", frequency: frequency(C4, 2) }, 
+    { name: "D#", frequency: frequency(C4, 3) }, 
+    { name: "E", frequency: frequency(C4, 4) }, 
+    { name: "F", frequency: frequency(C4, 5) }, 
+    { name: "F#", frequency: frequency(C4, 6) },
+    { name: "G", frequency: frequency(C4, 7) }, 
+    { name: "G#", frequency: frequency(C4, 8) }, 
+    { name: "A", frequency: frequency(C4, 9) }, 
+    { name: "A#", frequency: frequency(C4, 10) }, 
+    { name: "B", frequency: frequency(C4, 11) }, 
+    { name: "C5", frequency: frequency(C4, 12) }, // C5
 ]
 
 
