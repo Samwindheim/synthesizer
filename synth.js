@@ -7,17 +7,6 @@ const volume = cxt.createGain();
 volume.connect(cxt.destination);
 volume.gain.value = .1;
 
-// notes and their associated frequencies
-// don't use the name attribute but just for clarity
-
-// add input element to the DOM
-// Get the input element
-
-
-// Add an event listener for when the input value changes
-
-
-
 function frequency(referenceFrequency, distance) {
     return referenceFrequency * 2**(distance/12)
 }
@@ -40,12 +29,23 @@ const Notes = [
     { name: "C5", frequency: frequency(C4, 12) }, // C5
 ]
 
-let wavetype = 'triangle'
+const Wavetypes = [
+  { name: "sine"},
+  { name: "triangle"},
+  { name: "square"}
+]
+
+let wavetype;
 let noteLength = 2.5;
 let attack = 0; // shouldn't be greater than note length
 let decay = .001;  // shouldn't be greater than note length
 let tremoloDepth = .9; 
 let tremeloFrequency = 0;
+
+const waveType_control = document.querySelector('#waveType-control');
+waveType_control.addEventListener('input', function() {
+  wavetype =  Wavetypes[(this.value)].name;
+});
 
 const noteLength_control = document.querySelector('#noteLength-control');
 noteLength_control.addEventListener('input', function() {
@@ -66,9 +66,6 @@ const tremolo_control = document.querySelector('#tremolo-control');
 tremolo_control.addEventListener('input', function() {
   tremeloFrequency = parseFloat(this.value);
 });
-
-
-
 
 // synth functionality
 for (let i = 0; i <= Notes.length; i++) {
@@ -167,17 +164,3 @@ for (let i = 0; i <= Notes.length; i++) {
         noteVolume.connect(volume);
       });
 }
-
-
-
-
-//synth(wavetype, noteLength, attack, decay, tremoloDepth, tremeloFrequency);
-// noteLength = 5, attack = .1, decay = .1, tremeloDepth = .5, tremeloFrequency = 4
-// function main() {
-
-  
-
-
-// }
-
-//main()
