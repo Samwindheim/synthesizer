@@ -1,0 +1,25 @@
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 10%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #9c9c9c; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 1; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 28px; /* Slider handle height */
+    background: #353535; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
+  .bruh {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+  }

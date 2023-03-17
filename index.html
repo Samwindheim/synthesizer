@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>SYNTH</title>
-    <!-- <link rel=¨stylesheet¨ type=¨text/css¨ href=¨samplesynth.css¨> -->
+    <link rel="stylesheet" href="style.css" />
   </head>
   <style>
     body {
@@ -10,7 +10,7 @@
     }
   </style>
   <body>
-    <br />
+    <!-- <br />
     <span>Volume</span>
     <br />
     <input
@@ -20,28 +20,114 @@
       max=".5"
       step="0.05"
       value="0.1"
+    /> -->
+
+    <br />
+    <br />
+    <br />
+
+    <div
+      style="
+        position: absolute;
+        left: 27px;
+        top: 280px;
+        background-color: rgba(255, 255, 0, 0);
+      "
+    >
+      Note Length
+    </div>
+
+    <input
+      type="range"
+      id="noteLength-control"
+      min=".2"
+      max="5"
+      step="any"
+      value="2.5"
+      class="slider"
+      style="position: absolute; left: 25px; top: 300px"
     />
 
-    <br />
-    <br />
-    <br />
+    <div
+      style="
+        position: absolute;
+        left: 27px;
+        top: 340px;
+        background-color: rgba(255, 255, 0, 0);
+      "
+    >
+      Attack
+    </div>
 
-    <!-- white keys -->
+    <input
+      type="range"
+      id="attack-control"
+      min="0"
+      max=".5"
+      step="any"
+      value="0"
+      class="slider"
+      style="position: absolute; left: 25px; top: 360px"
+    />
 
-    <b> How to use: </b>
+    <div
+      style="
+        position: absolute;
+        left: 27px;
+        top: 400px;
+        background-color: rgba(255, 255, 0, 0);
+      "
+    >
+      Decay
+    </div>
+    <input
+      type="range"
+      id="decay-control"
+      min=".01"
+      max=".5"
+      step="any"
+      value=".001"
+      class="slider"
+      style="position: absolute; left: 25px; top: 420px"
+    />
+
+    <div
+      style="
+        position: absolute;
+        left: 27px;
+        top: 460px;
+        background-color: rgba(255, 255, 0, 0);
+      "
+    >
+      Tremolo
+    </div>
+    <input
+      type="range"
+      id="tremolo-control"
+      min="0"
+      max="15"
+      step="any"
+      value="0"
+      class="slider"
+      style="position: absolute; left: 25px; top: 480px"
+    />
+
     <div
       style="
         position: absolute;
         left: 100px;
-        top: 200px;
-        width: 100px;
-        height: 400px;
-        border: 1px solid #000;
-        background-color: rgb(236, 238, 230);
+        top: 50px;
+        background-color: rgba(255, 255, 0, 0);
       "
+      class="bruh"
     >
-      A
+      Welcome to my synthesizer! Press the letter keys on your computer keyboard
+      as labeled. Adjust the sliders to change the sound characteristics.
     </div>
+
+    <!-- white keys -->
+
+    <!-- <b> How to use: </b> -->
     <div
       style="
         position: absolute;
@@ -49,13 +135,21 @@
         top: 200px;
         width: 100px;
         height: 400px;
-        border: 1px solid #000;
+        border: 4px solid #000000;
         background-color: rgb(236, 238, 230);
       "
     >
-      S
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+        "
+        >A</span
+      >
     </div>
-
     <div
       style="
         position: absolute;
@@ -63,11 +157,20 @@
         top: 200px;
         width: 100px;
         height: 400px;
-        border: 1px solid #000;
+        border: 4px solid #000000;
         background-color: rgb(236, 238, 230);
       "
     >
-      D
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+        "
+        >S</span
+      >
     </div>
 
     <div
@@ -77,11 +180,20 @@
         top: 200px;
         width: 100px;
         height: 400px;
-        border: 1px solid #000;
+        border: 4px solid #000000;
         background-color: rgb(236, 238, 230);
       "
     >
-      F
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+        "
+        >D</span
+      >
     </div>
 
     <div
@@ -91,11 +203,20 @@
         top: 200px;
         width: 100px;
         height: 400px;
-        border: 1px solid #000;
+        border: 4px solid #000000;
         background-color: rgb(236, 238, 230);
       "
     >
-      G
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+        "
+        >F</span
+      >
     </div>
 
     <div
@@ -105,11 +226,20 @@
         top: 200px;
         width: 100px;
         height: 400px;
-        border: 1px solid #000;
+        border: 4px solid #000000;
         background-color: rgb(236, 238, 230);
       "
     >
-      H
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+        "
+        >G</span
+      >
     </div>
 
     <div
@@ -119,11 +249,20 @@
         top: 200px;
         width: 100px;
         height: 400px;
-        border: 1px solid #000;
+        border: 4px solid #000000;
         background-color: rgb(236, 238, 230);
       "
     >
-      J
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+        "
+        >H</span
+      >
     </div>
 
     <div
@@ -133,28 +272,46 @@
         top: 200px;
         width: 100px;
         height: 400px;
-        border: 1px solid #303030;
+        border: 4px solid #000000;
         background-color: rgb(236, 238, 230);
       "
     >
-      K
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+        "
+        >J</span
+      >
     </div>
 
-    <!-- Black keys -->
     <div
       style="
         position: absolute;
-        left: 165px;
+        left: 900px;
         top: 200px;
-        width: 75px;
-        height: 225px;
-        border: 1px solid #000;
-        background-color: rgb(46, 46, 49);
+        width: 100px;
+        height: 400px;
+        border: 4px solid #000000;
+        background-color: rgb(236, 238, 230);
       "
     >
-      W
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+        "
+        >K</span
+      >
     </div>
 
+    <!-- Black keys -->
     <div
       style="
         position: absolute;
@@ -166,13 +323,23 @@
         background-color: rgb(46, 46, 49);
       "
     >
-      E
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+          color: white;
+        "
+        >W</span
+      >
     </div>
 
     <div
       style="
         position: absolute;
-        left: 465px;
+        left: 365px;
         top: 200px;
         width: 75px;
         height: 225px;
@@ -180,7 +347,17 @@
         background-color: rgb(46, 46, 49);
       "
     >
-      T
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+          color: white;
+        "
+        >E</span
+      >
     </div>
 
     <div
@@ -194,7 +371,17 @@
         background-color: rgb(46, 46, 49);
       "
     >
-      Y
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+          color: white;
+        "
+        >T</span
+      >
     </div>
 
     <div
@@ -208,7 +395,41 @@
         background-color: rgb(46, 46, 49);
       "
     >
-      U
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+          color: white;
+        "
+        >Y</span
+      >
+    </div>
+
+    <div
+      style="
+        position: absolute;
+        left: 765px;
+        top: 200px;
+        width: 75px;
+        height: 225px;
+        border: 1px solid #000;
+        background-color: rgb(46, 46, 49);
+      "
+    >
+      <span
+        style="
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 18px;
+          color: white;
+        "
+        >U</span
+      >
     </div>
 
     <script src="synth.js"></script>
